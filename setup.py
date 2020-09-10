@@ -18,4 +18,9 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.8',
+    install_requires=[
+        'boto3>=1.14, <1.15',
+        'prompt_toolkit >=3.0, <4.0',
+        'pygments >= 2.6, <3.0'
+    ]
 )
