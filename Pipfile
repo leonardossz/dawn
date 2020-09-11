@@ -5,6 +5,7 @@ name = "pypi"
 
 [dev-packages]
 pip-licenses = "*"
+boto3-stubs = "*"
 
 [requires]
 python_version = "3.8"
