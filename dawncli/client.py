@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
 
+__copyright__ = 'Copyright 2020 See AUTHORS'
+__license__ = 'See LICENSE'
+
 import json
 import sys
 import boto3
