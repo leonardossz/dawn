@@ -29,9 +29,12 @@ def main(*args):
     cluster_arn, secret_arn, db = args
 
     session = PromptSession(lexer=PygmentsLexer(SqlLexer))
+    json_lexer = JsonLexer()
+    term_formatter = TerminalFormatter()
 
     while True:
         try:
+            print('Use CTRL-d to exit.')
             sql_str = session.prompt(f'{db} | mysql> ')
         except KeyboardInterrupt:
             continue
@@ -41,7 +44,7 @@ def main(*args):
             if sql_str:
                 res = execute(cluster_arn, secret_arn, db, sql_str)
                 json_str = json.dumps(res, indent=4, sort_keys=True)
-                print(highlight(json_str, JsonLexer(), TerminalFormatter()))
+                print(highlight(json_str, json_lexer, term_formatter))
 
 
 if __name__ == '__main__':
