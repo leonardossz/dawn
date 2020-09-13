@@ -9,8 +9,10 @@ with open('README.md', 'r') as fh:
 setuptools.setup(
     name='dawncli',
     version='0.0.1',
+    url='https://github.com/leonardossz/mysql-dawn',
     author='See AUTHORS',
     author_email='leonardossz@gmail.com',
+    maintainer_email='leonardossz@gmail.com',
     description='Unofficial AWS Aurora Serverless command line client.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -25,5 +27,10 @@ setuptools.setup(
         'boto3>=1.14, <1.15',
         'prompt_toolkit >=3.0, <4.0',
         'pygments >= 2.6, <3.0'
-    ]
+    ],
+    entry_points={
+        'console_scripts': [
+            'dawncli = dawncli.client:main',
+        ],
+    }
 )

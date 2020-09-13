@@ -25,16 +25,18 @@ def execute(cluster_arn, secret_arn, db, sql_str) -> str:
         sql=sql_str)
 
 
-def main(*args):
+def main():
+    args = sys.argv[1:]
     cluster_arn, secret_arn, db = args
 
     session = PromptSession(lexer=PygmentsLexer(SqlLexer))
     json_lexer = JsonLexer()
     term_formatter = TerminalFormatter()
 
+    print('Use CTRL-d to exit.')
+
     while True:
         try:
-            print('Use CTRL-d to exit.')
             sql_str = session.prompt(f'{db} | mysql> ')
         except KeyboardInterrupt:
             continue
@@ -48,4 +50,4 @@ def main(*args):
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:])
+    main()
