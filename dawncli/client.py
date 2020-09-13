@@ -1,11 +1,15 @@
 from __future__ import unicode_literals
 
+import json
 import sys
 import boto3
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.lexers import PygmentsLexer
 from pygments.lexers.sql import SqlLexer
+from pygments.lexers.data import JsonLexer
+from pygments import highlight
+from pygments.formatters.terminal import TerminalFormatter
 
 rdsData = boto3.client('rds-data')
 
@@ -33,7 +37,8 @@ def main(*args):
         else:
             if sql_str:
                 res = execute(cluster_arn, secret_arn, db, sql_str)
-                print(res)
+                json_str = json.dumps(res, indent=4, sort_keys=True)
+                print(highlight(json_str, JsonLexer(), TerminalFormatter()))
 
 
 if __name__ == '__main__':
